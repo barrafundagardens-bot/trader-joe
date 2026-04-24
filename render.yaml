@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: trader-joe-dashboard
+    runtime: python
+    buildCommand: pip install -r requirements_dashboard.txt
+    startCommand: uvicorn dashboard_api:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PRIVATE_KEY
+        sync: false
+      - key: CLOB_HOST
+        value: https://clob.polymarket.com
+      - key: CHAIN_ID
+        value: "137"
+      - key: API_KEY
+        sync: false
+      - key: API_SECRET
+        sync: false
+      - key: API_PASSPHRASE
+        sync: false
+      - key: DASHBOARD_SECRET
+        sync: false
+      - key: SIGNATURE_TYPE
+        value: "0"
+      - key: POLYMARKET_PROXY_ADDRESS
+        sync: false

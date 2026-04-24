@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trader Joe — Polymarket Dashboard</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f172a;
+      --bg2: #1e293b;
+      --bg3: #263548;
+      --accent: #06b6d4;
+      --accent2: #0284c7;
+      --green: #10b981;
+      --red: #ef4444;
+      --yellow: #f59e0b;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --border: #334155;
+      --radius: 10px;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 16px;
+    }
+
+    /* ── Setup overlay ─────────────────────────────── */
+    #setup-overlay {
+      position: fixed; inset: 0; z-index: 100;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+    }
+    #setup-overlay.hidden { display: none; }
+    .setup-box {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      width: min(420px, 95vw);
+    }
+    .setup-box h2 { color: var(--accent); margin-bottom: 8px; font-size: 20px; }
+    .setup-box p  { color: var(--muted); font-size: 13px; margin-bottom: 24px; }
+    .setup-box label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+    .setup-box input {
+      width: 100%; padding: 10px 12px;
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 6px; color: var(--text); font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    /* ── Layout ────────────────────────────────────── */
+    .header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 20px; flex-wrap: wrap; gap: 8px;
+    }
+    .header h1 { font-size: 20px; color: var(--accent); }
+    .header-right { display: flex; align-items: center; gap: 10px; }
+    .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+    @media(max-width: 480px){ .grid { grid-template-columns: 1fr; } }
+
+    .card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+    .card-title {
+      font-size: 11px; text-transform: uppercase; letter-spacing: .08em;
+      color: var(--muted); margin-bottom: 8px;
+    }
+    .card-value { font-size: 28px; font-weight: 700; }
+    .card-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    /* ── Sections ──────────────────────────────────── */
+    .section { margin-bottom: 16px; }
+    .section-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .section-title { font-size: 14px; font-weight: 600; color: var(--accent); }
+
+    /* ── Tables ────────────────────────────────────── */
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th { text-align: left; padding: 8px 10px; color: var(--muted); font-weight: 500; border-bottom: 1px solid var(--border); white-space: nowrap; }
+    td { padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    tr:last-child td { border-bottom: none; }
+    .empty-row td { text-align: center; color: var(--muted); font-size: 12px; padding: 20px; }
+
+    .badge {
+      display: inline-block; padding: 2px 8px; border-radius: 99px;
+      font-size: 11px; font-weight: 600; text-transform: uppercase;
+    }
+    .badge-buy  { background: rgba(16,185,129,.2); color: var(--green); }
+    .badge-sell { background: rgba(239,68,68,.2);  color: var(--red); }
+    .badge-live { background: rgba(6,182,212,.2);  color: var(--accent); }
+
+    /* ── Forms ─────────────────────────────────────── */
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media(max-width:480px){ .form-grid { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 4px; }
+    .form-group label { font-size: 12px; color: var(--muted); }
+    .form-group input, .form-group select {
+      padding: 9px 12px;
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 6px; color: var(--text); font-size: 14px;
+    }
+    .form-group input:focus, .form-group select:focus {
+      outline: none; border-color: var(--accent);
+    }
+    .form-full { grid-column: 1 / -1; }
+
+    /* ── Buttons ───────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 6px; padding: 9px 16px; border-radius: 6px;
+      border: none; cursor: pointer; font-size: 13px; font-weight: 600;
+      transition: opacity .15s;
+    }
+    .btn:hover { opacity: .85; }
+    .btn:disabled { opacity: .4; cursor: not-allowed; }
+    .btn-primary  { background: var(--accent); color: #0f172a; }
+    .btn-green    { background: var(--green);  color: #0f172a; }
+    .btn-red      { background: var(--red);    color: #fff; }
+    .btn-ghost    { background: var(--bg3);    color: var(--text); border: 1px solid var(--border); }
+    .btn-sm       { padding: 5px 10px; font-size: 12px; }
+    .btn-full     { width: 100%; }
+
+    /* ── Market search ─────────────────────────────── */
+    .market-result {
+      margin-top: 10px; background: var(--bg3);
+      border: 1px solid var(--border); border-radius: 8px; padding: 12px;
+      font-size: 13px;
+    }
+    .market-result .q { font-weight: 600; margin-bottom: 6px; }
+    .market-result .prices { display: flex; gap: 16px; margin-bottom: 8px; }
+    .market-result .prices span { color: var(--muted); font-size: 12px; }
+    .market-result .prices b { color: var(--text); }
+    .market-result .ids { font-size: 11px; color: var(--muted); word-break: break-all; }
+
+    /* ── Toast ─────────────────────────────────────── */
+    #toast {
+      position: fixed; bottom: 20px; right: 20px; z-index: 200;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 8px; padding: 12px 16px;
+      max-width: 320px; font-size: 13px;
+      transform: translateY(80px); opacity: 0;
+      transition: all .25s;
+    }
+    #toast.show { transform: translateY(0); opacity: 1; }
+    #toast.ok   { border-color: var(--green); color: var(--green); }
+    #toast.err  { border-color: var(--red);   color: var(--red); }
+
+    /* ── Misc ──────────────────────────────────────── */
+    .refresh-label { font-size: 11px; color: var(--muted); }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+  </style>
+</head>
+<body>
+
+<!-- ── Setup overlay ──────────────────────────────────────── -->
+<div id="setup-overlay">
+  <div class="setup-box">
+    <h2>🔐 Configurar Acesso</h2>
+    <p>Informe a URL da API e o segredo. Estes dados ficam apenas no seu navegador (localStorage).</p>
+    <label>URL da API (ex: https://trader-joe.onrender.com)</label>
+    <input id="setup-url" type="url" placeholder="https://trader-joe.onrender.com" />
+    <label>Dashboard Secret (DASHBOARD_SECRET configurado no Render)</label>
+    <input id="setup-secret" type="password" placeholder="sua_senha_secreta" />
+    <button class="btn btn-primary btn-full" onclick="saveSetup()">Conectar</button>
+  </div>
+</div>
+
+<!-- ── App ────────────────────────────────────────────────── -->
+<div id="app" style="display:none; max-width:900px; margin:0 auto;">
+
+  <div class="header">
+    <h1>🤖 Trader Joe</h1>
+    <div class="header-right">
+      <span class="pulse"></span>
+      <span class="refresh-label" id="refresh-label">Atualizando…</span>
+      <button class="btn btn-ghost btn-sm" onclick="refreshAll()">↻ Refresh</button>
+      <button class="btn btn-ghost btn-sm" onclick="resetSetup()">⚙</button>
+    </div>
+  </div>
+
+  <!-- Saldo -->
+  <div class="grid">
+    <div class="card">
+      <div class="card-title">Saldo USDC</div>
+      <div class="card-value" id="balance-value">—</div>
+      <div class="card-sub" id="balance-sub"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Ordens Abertas</div>
+      <div class="card-value" id="orders-count">—</div>
+      <div class="card-sub">limit orders ativas</div>
+    </div>
+  </div>
+
+  <!-- Ordens abertas -->
+  <div class="section card">
+    <div class="section-header">
+      <span class="section-title">Ordens Abertas</span>
+      <button class="btn btn-red btn-sm" onclick="cancelAll()">Cancelar Todas</button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Lado</th>
+            <th>Token (início)</th>
+            <th>Preço</th>
+            <th>Shares</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="orders-body">
+          <tr class="empty-row"><td colspan="6">Carregando…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Trades recentes -->
+  <div class="section card">
+    <div class="section-header">
+      <span class="section-title">Trades Recentes</span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Lado</th>
+            <th>Token (início)</th>
+            <th>Preço</th>
+            <th>Shares</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="trades-body">
+          <tr class="empty-row"><td colspan="5">Carregando…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- Buscar mercado -->
+  <div class="section card">
+    <div class="section-header">
+      <span class="section-title">🔍 Buscar Mercado</span>
+    </div>
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <input id="slug-input" style="flex:1; min-width:180px; padding:9px 12px; background:var(--bg3); border:1px solid var(--border); border-radius:6px; color:var(--text); font-size:14px;" placeholder="slug do mercado (ex: will-trump-win-2024)" />
+      <button class="btn btn-ghost" onclick="searchMarket()">Buscar</button>
+    </div>
+    <div id="market-results"></div>
+  </div>
+
+  <!-- Colocar ordem -->
+  <div class="section card">
+    <div class="section-header">
+      <span class="section-title">📤 Colocar Ordem</span>
+    </div>
+    <div class="form-grid">
+      <div class="form-group form-full">
+        <label>Token ID</label>
+        <input id="order-token" type="text" placeholder="Cole o token_id do mercado acima" />
+      </div>
+      <div class="form-group">
+        <label>Lado</label>
+        <select id="order-side">
+          <option value="BUY">BUY (comprar YES)</option>
+          <option value="SELL">SELL (vender)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Preço (0.01 – 0.99)</label>
+        <input id="order-price" type="number" step="0.01" min="0.01" max="0.99" placeholder="0.65" />
+      </div>
+      <div class="form-group">
+        <label>Shares</label>
+        <input id="order-size" type="number" step="1" min="1" placeholder="10" />
+      </div>
+      <div class="form-group" style="align-self:end;">
+        <span id="order-cost" style="font-size:12px; color:var(--muted); margin-bottom:4px;">Custo estimado: —</span>
+        <button class="btn btn-green" onclick="placeOrder()">Enviar Ordem</button>
+      </div>
+    </div>
+
+    <!-- Orderbook rápido -->
+    <div id="orderbook-section" style="margin-top:12px; display:none;">
+      <div style="font-size:12px; color:var(--muted); margin-bottom:6px;">Orderbook (top 5)</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:12px;">
+        <div>
+          <div style="color:var(--green); margin-bottom:4px;">BIDS</div>
+          <div id="ob-bids"></div>
+        </div>
+        <div>
+          <div style="color:var(--red); margin-bottom:4px;">ASKS</div>
+          <div id="ob-asks"></div>
+        </div>
+      </div>
+      <div id="ob-mid" style="margin-top:6px; font-size:12px; color:var(--muted);"></div>
+    </div>
+    <button id="ob-btn" class="btn btn-ghost btn-sm" style="margin-top:10px; display:none;" onclick="loadOrderbook()">Ver Orderbook</button>
+  </div>
+
+</div>
+
+<!-- Toast -->
+<div id="toast"></div>
+
+<script>
+  // ── Config ──────────────────────────────────────────────────
+  let API_URL    = localStorage.getItem('tj_api_url')    || '';
+  let API_SECRET = localStorage.getItem('tj_api_secret') || '';
+
+  function saveSetup() {
+    const url    = document.getElementById('setup-url').value.trim().replace(/\/$/, '');
+    const secret = document.getElementById('setup-secret').value.trim();
+    if (!url) { alert('Informe a URL da API.'); return; }
+    API_URL    = url;
+    API_SECRET = secret;
+    localStorage.setItem('tj_api_url',    API_URL);
+    localStorage.setItem('tj_api_secret', API_SECRET);
+    document.getElementById('setup-overlay').classList.add('hidden');
+    document.getElementById('app').style.display = 'block';
+    refreshAll();
+  }
+
+  function resetSetup() {
+    localStorage.removeItem('tj_api_url');
+    localStorage.removeItem('tj_api_secret');
+    location.reload();
+  }
+
+  // Pre-fill and maybe skip overlay
+  if (API_URL) {
+    document.getElementById('setup-url').value    = API_URL;
+    document.getElementById('setup-secret').value = API_SECRET;
+    document.getElementById('setup-overlay').classList.add('hidden');
+    document.getElementById('app').style.display  = 'block';
+  }
+
+  // ── API helper ───────────────────────────────────────────────
+  async function api(method, path, body) {
+    const opts = {
+      method,
+      headers: { 'X-Dashboard-Secret': API_SECRET, 'Content-Type': 'application/json' },
+    };
+    if (body) opts.body = JSON.stringify(body);
+    const resp = await fetch(API_URL + path, opts);
+    if (!resp.ok) {
+      const err = await resp.json().catch(() => ({ detail: resp.statusText }));
+      throw new Error(err.detail || resp.statusText);
+    }
+    return resp.json();
+  }
+
+  // ── Toast ────────────────────────────────────────────────────
+  let toastTimer;
+  function toast(msg, type = 'ok') {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.className   = 'show ' + type;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { el.className = ''; }, 4000);
+  }
+
+  // ── Balance ──────────────────────────────────────────────────
+  async function loadBalance() {
+    try {
+      const d = await api('GET', '/api/balance');
+      document.getElementById('balance-value').textContent = '$' + d.balance_usdc.toFixed(2);
+      document.getElementById('balance-sub').textContent   = 'Allowance: $' + d.allowance_usdc.toFixed(2);
+    } catch(e) {
+      document.getElementById('balance-value').textContent = 'Erro';
+      document.getElementById('balance-sub').textContent   = e.message;
+    }
+  }
+
+  // ── Orders ───────────────────────────────────────────────────
+  async function loadOrders() {
+    try {
+      const d    = await api('GET', '/api/orders');
+      const tbody = document.getElementById('orders-body');
+      document.getElementById('orders-count').textContent = d.orders.length;
+      if (!d.orders.length) {
+        tbody.innerHTML = '<tr class="empty-row"><td colspan="6">Sem ordens abertas</td></tr>';
+        return;
+      }
+      tbody.innerHTML = d.orders.map(o => `
+        <tr>
+          <td><span class="badge badge-${(o.side||'').toLowerCase()}">${o.side||'—'}</span></td>
+          <td style="font-family:monospace;font-size:11px;">${(o.asset_id||o.token_id||'').slice(0,14)}…</td>
+          <td>${o.price||'—'}</td>
+          <td>${o.original_size||'—'}</td>
+          <td><span class="badge badge-live">${o.status||'LIVE'}</span></td>
+          <td><button class="btn btn-red btn-sm" onclick="cancelOrder('${o.id}')">✕</button></td>
+        </tr>
+      `).join('');
+    } catch(e) {
+      document.getElementById('orders-body').innerHTML =
+        `<tr class="empty-row"><td colspan="6">Erro: ${e.message}</td></tr>`;
+    }
+  }
+
+  // ── Trades ───────────────────────────────────────────────────
+  async function loadTrades() {
+    try {
+      const d     = await api('GET', '/api/trades');
+      const tbody = document.getElementById('trades-body');
+      if (!d.trades.length) {
+        tbody.innerHTML = '<tr class="empty-row"><td colspan="5">Sem trades recentes</td></tr>';
+        return;
+      }
+      tbody.innerHTML = d.trades.slice(0, 20).map(t => `
+        <tr>
+          <td><span class="badge badge-${(t.side||t.maker_side||'').toLowerCase()}">${t.side||t.maker_side||'—'}</span></td>
+          <td style="font-family:monospace;font-size:11px;">${(t.asset_id||t.market_id||'').slice(0,14)}…</td>
+          <td>${t.price||'—'}</td>
+          <td>${t.size||t.matched_amount||'—'}</td>
+          <td>${t.status||t.type||'—'}</td>
+        </tr>
+      `).join('');
+    } catch(e) {
+      document.getElementById('trades-body').innerHTML =
+        `<tr class="empty-row"><td colspan="5">Erro: ${e.message}</td></tr>`;
+    }
+  }
+
+  // ── Cancel ───────────────────────────────────────────────────
+  async function cancelOrder(id) {
+    if (!confirm('Cancelar esta ordem?')) return;
+    try {
+      await api('DELETE', `/api/order/${id}`);
+      toast('Ordem cancelada!');
+      loadOrders();
+    } catch(e) { toast('Erro: ' + e.message, 'err'); }
+  }
+
+  async function cancelAll() {
+    if (!confirm('Cancelar TODAS as ordens abertas?')) return;
+    try {
+      await api('DELETE', '/api/orders/all');
+      toast('Todas as ordens canceladas.');
+      loadOrders();
+      loadBalance();
+    } catch(e) { toast('Erro: ' + e.message, 'err'); }
+  }
+
+  // ── Market search ────────────────────────────────────────────
+  async function searchMarket() {
+    const slug = document.getElementById('slug-input').value.trim();
+    if (!slug) return;
+    const container = document.getElementById('market-results');
+    container.innerHTML = '<div style="color:var(--muted);font-size:12px;margin-top:8px;">Buscando…</div>';
+    try {
+      const d = await api('GET', `/api/market/search?slug=${encodeURIComponent(slug)}`);
+      if (!d.markets.length) {
+        container.innerHTML = '<div style="color:var(--muted);font-size:12px;margin-top:8px;">Nenhum mercado encontrado.</div>';
+        return;
+      }
+      container.innerHTML = d.markets.map(m => `
+        <div class="market-result">
+          <div class="q">${m.question}</div>
+          <div class="prices">
+            <span>YES <b>${m.price_yes != null ? (m.price_yes*100).toFixed(1)+'%' : '—'}</b></span>
+            <span>NO  <b>${m.price_no  != null ? (m.price_no *100).toFixed(1)+'%' : '—'}</b></span>
+            <span>Encerra <b>${m.end_date ? m.end_date.slice(0,10) : '—'}</b></span>
+          </div>
+          <div class="ids">
+            YES token: <code>${m.token_id_yes||'—'}</code>
+            &nbsp;&nbsp;
+            NO token: <code>${m.token_id_no||'—'}</code>
+          </div>
+          <div style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap;">
+            <button class="btn btn-ghost btn-sm" onclick="fillToken('${m.token_id_yes}', ${m.price_yes||0.5}, 'BUY')">
+              Usar YES →
+            </button>
+            <button class="btn btn-ghost btn-sm" onclick="fillToken('${m.token_id_no}', ${m.price_no||0.5}, 'BUY')">
+              Usar NO →
+            </button>
+          </div>
+        </div>
+      `).join('');
+    } catch(e) {
+      container.innerHTML = `<div style="color:var(--red);font-size:12px;margin-top:8px;">Erro: ${e.message}</div>`;
+    }
+  }
+
+  function fillToken(tokenId, price, side) {
+    document.getElementById('order-token').value = tokenId;
+    document.getElementById('order-price').value = price ? price.toFixed(2) : '';
+    document.getElementById('order-side').value  = side;
+    document.getElementById('ob-btn').style.display = 'inline-flex';
+    updateCost();
+    document.getElementById('order-token').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  // ── Orderbook ────────────────────────────────────────────────
+  async function loadOrderbook() {
+    const tokenId = document.getElementById('order-token').value.trim();
+    if (!tokenId) { toast('Informe o Token ID primeiro.', 'err'); return; }
+    try {
+      const d = await api('GET', `/api/orderbook/${tokenId}`);
+      const section = document.getElementById('orderbook-section');
+      section.style.display = 'block';
+      document.getElementById('ob-bids').innerHTML = d.bids.slice(0,5).map(b =>
+        `<div style="color:var(--green)">${parseFloat(b.price).toFixed(4)} × ${parseFloat(b.size).toFixed(0)}</div>`
+      ).join('') || '<div style="color:var(--muted)">—</div>';
+      document.getElementById('ob-asks').innerHTML = d.asks.slice(0,5).map(a =>
+        `<div style="color:var(--red)">${parseFloat(a.price).toFixed(4)} × ${parseFloat(a.size).toFixed(0)}</div>`
+      ).join('') || '<div style="color:var(--muted)">—</div>';
+      document.getElementById('ob-mid').textContent =
+        `Midpoint: ${d.midpoint} | Bid: ${d.best_bid} | Ask: ${d.best_ask}`;
+      document.getElementById('order-price').value = d.midpoint;
+      updateCost();
+    } catch(e) { toast('Erro ao carregar orderbook: ' + e.message, 'err'); }
+  }
+
+  // ── Place order ──────────────────────────────────────────────
+  function updateCost() {
+    const price = parseFloat(document.getElementById('order-price').value) || 0;
+    const size  = parseFloat(document.getElementById('order-size').value)  || 0;
+    const cost  = price && size ? (price * size).toFixed(2) : '—';
+    document.getElementById('order-cost').textContent = `Custo estimado: $${cost} USDC`;
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('order-price').addEventListener('input', updateCost);
+    document.getElementById('order-size').addEventListener('input', updateCost);
+    document.getElementById('order-token').addEventListener('input', () => {
+      const hasToken = document.getElementById('order-token').value.trim().length > 0;
+      document.getElementById('ob-btn').style.display = hasToken ? 'inline-flex' : 'none';
+    });
+    document.getElementById('slug-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') searchMarket();
+    });
+  });
+
+  async function placeOrder() {
+    const token = document.getElementById('order-token').value.trim();
+    const side  = document.getElementById('order-side').value;
+    const price = parseFloat(document.getElementById('order-price').value);
+    const size  = parseFloat(document.getElementById('order-size').value);
+
+    if (!token) { toast('Informe o Token ID.', 'err'); return; }
+    if (!price || price < 0.01 || price > 0.99) { toast('Preço deve ser entre 0.01 e 0.99.', 'err'); return; }
+    if (!size  || size < 1)                      { toast('Shares mínimo: 1.',               'err'); return; }
+
+    const cost = (price * size).toFixed(2);
+    if (!confirm(`Confirmar: ${side} ${size} shares @ ${price} = $${cost} USDC?`)) return;
+
+    try {
+      const d = await api('POST', '/api/order', { token_id: token, side, price, size });
+      toast(`✅ Ordem enviada! ID: ${(d.order_id||'').slice(0,20)}…`);
+      setTimeout(() => { loadOrders(); loadBalance(); }, 2000);
+    } catch(e) { toast('Erro: ' + e.message, 'err'); }
+  }
+
+  // ── Refresh ──────────────────────────────────────────────────
+  async function refreshAll() {
+    document.getElementById('refresh-label').textContent = 'Atualizando…';
+    await Promise.all([loadBalance(), loadOrders(), loadTrades()]);
+    const now = new Date().toLocaleTimeString('pt-BR');
+    document.getElementById('refresh-label').textContent = `Atualizado ${now}`;
+  }
+
+  // Auto-refresh a cada 30s
+  if (API_URL) {
+    refreshAll();
+    setInterval(refreshAll, 30000);
+  }
+</script>
+</body>
+</html>

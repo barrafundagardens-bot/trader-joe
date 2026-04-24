@@ -1,0 +1,109 @@
+# ============================================================
+# .gitignore — Polymarket Trading Bot
+# NUNCA commite arquivos listados aqui.
+# ============================================================
+
+# ----------------------------------------------------------
+# SEGURANÇA CRÍTICA — Chaves e credenciais
+# ----------------------------------------------------------
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.p12
+*.pfx
+private_key*
+secrets*
+credentials*
+
+# ----------------------------------------------------------
+# Python
+# ----------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# ----------------------------------------------------------
+# Ambientes virtuais
+# ----------------------------------------------------------
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.virtualenv/
+
+# ----------------------------------------------------------
+# Dados de mercado e trades (podem conter informações sensíveis)
+# ----------------------------------------------------------
+data/
+*.csv
+*.parquet
+*.feather
+*.h5
+*.hdf5
+logs/
+*.log
+results/
+backtest_results/
+
+# ----------------------------------------------------------
+# IDEs e editores
+# ----------------------------------------------------------
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ----------------------------------------------------------
+# Jupyter
+# ----------------------------------------------------------
+.ipynb_checkpoints/
+*.ipynb
+
+# ----------------------------------------------------------
+# Pytest e cobertura
+# ----------------------------------------------------------
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# ----------------------------------------------------------
+# Mypy
+# ----------------------------------------------------------
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# ----------------------------------------------------------
+# Específico do projeto
+# ----------------------------------------------------------
+paper_trades.json
+live_trades.json
+portfolio_state.json
+emergency_stop.flag

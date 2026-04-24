@@ -1,0 +1,34 @@
+# ============================================================
+# Polymarket Trading Bot — requirements.txt
+# Versões fixas para reprodutibilidade e auditoria de segurança
+# ============================================================
+# AUDITORIA RECOMENDADA (execute antes de colocar capital real):
+#   pip install pip-audit
+#   pip-audit -r requirements.txt
+#   pip install safety
+#   safety check -r requirements.txt
+# ============================================================
+
+# SDK oficial Polymarket CLOB (Central Limit Order Book)
+py-clob-client==0.18.0
+
+# Manipulação e análise de dados (OHLC, resampling de candles)
+pandas==2.2.2
+numpy==1.26.4
+
+# Indicadores técnicos (MACD, RSI) — biblioteca leve sem dependências pesadas
+ta==0.11.0
+
+# Variáveis de ambiente — carrega .env com segurança
+python-dotenv==1.0.1
+
+# Requisições HTTP — usado pelo py-clob-client internamente
+requests==2.32.3
+
+# ============================================================
+# NÃO ADICIONE pacotes sem revisar:
+#   1. Verifique a idade do repositório no GitHub (> 1 ano = melhor)
+#   2. Verifique número de stars e mantenedores ativos
+#   3. Leia o código-fonte dos pacotes de menor popularidade
+#   4. Execute pip-audit após qualquer adição
+# ============================================================

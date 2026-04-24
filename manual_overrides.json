@@ -1,0 +1,588 @@
+{
+  "blocked_tokens": [
+    {
+      "token_id": "highest-temperature-in-jakarta-on-april-22-2026",
+      "reason": "bloqueio de evento — Jakarta (intervenção manual detectada)",
+      "blocked_at": "2026-04-21T20:46:29.847138+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Jakarta"
+    },
+    {
+      "token_id": "highest-temperature-in-shanghai-on-april-22-2026",
+      "reason": "bloqueio de evento — Shanghai (intervenção manual detectada)",
+      "blocked_at": "2026-04-21T20:46:30.481837+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Shanghai"
+    },
+    {
+      "token_id": "highest-temperature-in-paris-on-april-22-2026",
+      "reason": "bloqueio de evento — Paris (intervenção manual detectada)",
+      "blocked_at": "2026-04-21T20:46:34.752803+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Paris"
+    },
+    {
+      "token_id": "highest-temperature-in-ankara-on-april-22-2026",
+      "reason": "bloqueio de evento — Ankara (intervenção manual detectada)",
+      "blocked_at": "2026-04-21T20:46:31.688823+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Ankara"
+    },
+    {
+      "token_id": "highest-temperature-in-madrid-on-april-22-2026",
+      "reason": "bloqueio de evento — Madrid (intervenção manual detectada)",
+      "blocked_at": "2026-04-21T20:46:32.302690+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Madrid"
+    },
+    {
+      "token_id": "highest-temperature-in-seoul-on-april-22-2026",
+      "reason": "bloqueio de evento — Seoul (intervenção manual detectada)",
+      "blocked_at": "2026-04-21T20:52:24.066003+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Seoul"
+    },
+    {
+      "token_id": "highest-temperature-in-warsaw-on-april-23-2026",
+      "reason": "bloqueio de evento — Warsaw (intervenção manual detectada)",
+      "blocked_at": "2026-04-21T20:46:33.936197+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Warsaw"
+    },
+    {
+      "token_id": "highest-temperature-in-shanghai-on-april-23-2026",
+      "reason": "bloqueio de evento — Shanghai (intervenção manual detectada)",
+      "blocked_at": "2026-04-21T20:46:35.158786+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Shanghai"
+    },
+    {
+      "token_id": "highest-temperature-in-helsinki-on-april-22-2026",
+      "reason": "bloqueio de evento — Helsinki (intervenção manual detectada)",
+      "blocked_at": "2026-04-21T20:52:24.788878+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Helsinki"
+    },
+    {
+      "token_id": "highest-temperature-in-shenzhen-on-april-23-2026",
+      "reason": "bloqueio de evento — Shenzhen (intervenção manual detectada)",
+      "blocked_at": "2026-04-21T20:52:25.597399+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Shenzhen"
+    },
+    {
+      "token_id": "highest-temperature-in-toronto-on-april-22-2026",
+      "reason": "bloqueio de evento — Toronto (intervenção manual detectada)",
+      "blocked_at": "2026-04-22T10:46:01.029183+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Toronto"
+    },
+    {
+      "token_id": "highest-temperature-in-moscow-on-april-22-2026",
+      "reason": "bloqueio de evento — Moscow (intervenção manual detectada)",
+      "blocked_at": "2026-04-22T10:58:18.561220+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Moscow"
+    },
+    {
+      "token_id": "highest-temperature-in-jakarta-on-april-23-2026",
+      "reason": "bloqueio de evento — Jakarta (intervenção manual detectada)",
+      "blocked_at": "2026-04-22T11:35:11.800450+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Jakarta"
+    },
+    {
+      "token_id": "highest-temperature-in-paris-on-april-23-2026",
+      "reason": "bloqueio de evento — Paris (intervenção manual detectada)",
+      "blocked_at": "2026-04-22T11:35:12.286343+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Paris"
+    },
+    {
+      "token_id": "highest-temperature-in-hong-kong-on-april-23-2026",
+      "reason": "bloqueio de evento — Hong Kong (intervenção manual detectada)",
+      "blocked_at": "2026-04-22T11:35:12.759014+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Hong Kong"
+    },
+    {
+      "token_id": "highest-temperature-in-ankara-on-april-23-2026",
+      "reason": "bloqueio de evento — Ankara (intervenção manual detectada)",
+      "blocked_at": "2026-04-22T11:35:13.243141+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Ankara"
+    },
+    {
+      "token_id": "highest-temperature-in-istanbul-on-april-24-2026",
+      "reason": "bloqueio de evento — Istanbul (intervenção manual detectada)",
+      "blocked_at": "2026-04-22T11:35:13.733522+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Istanbul"
+    },
+    {
+      "token_id": "highest-temperature-in-london-on-april-22-2026",
+      "reason": "bloqueio de evento — London (intervenção manual detectada)",
+      "blocked_at": "2026-04-22T11:41:21.464830+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "London"
+    },
+    {
+      "token_id": "highest-temperature-in-buenos-aires-on-april-23-2026",
+      "reason": "bloqueio de evento — Buenos Aires (intervenção manual detectada)",
+      "blocked_at": "2026-04-22T11:47:20.639254+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Buenos Aires"
+    },
+    {
+      "token_id": "highest-temperature-in-beijing-on-april-24-2026",
+      "reason": "bloqueio de evento — Beijing (intervenção manual detectada)",
+      "blocked_at": "2026-04-22T11:41:22.533595+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Beijing"
+    },
+    {
+      "token_id": "highest-temperature-in-seoul-on-april-24-2026",
+      "reason": "bloqueio de evento — Seoul (intervenção manual detectada)",
+      "blocked_at": "2026-04-22T11:41:23.106225+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Seoul"
+    },
+    {
+      "token_id": "highest-temperature-in-hong-kong-on-april-24-2026",
+      "reason": "bloqueio de evento — Hong Kong (intervenção manual detectada)",
+      "blocked_at": "2026-04-22T11:47:18.850308+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Hong Kong"
+    },
+    {
+      "token_id": "highest-temperature-in-london-on-april-24-2026",
+      "reason": "bloqueio de evento — London (intervenção manual detectada)",
+      "blocked_at": "2026-04-22T11:47:19.422158+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "London"
+    },
+    {
+      "token_id": "highest-temperature-in-singapore-on-april-23-2026",
+      "reason": "bloqueio de evento — Singapore (intervenção manual detectada)",
+      "blocked_at": "2026-04-22T11:47:20.042090+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Singapore"
+    },
+    {
+      "token_id": "highest-temperature-in-manila-on-april-23-2026",
+      "reason": "bloqueio de evento — Manila (intervenção manual detectada)",
+      "blocked_at": "2026-04-22T11:47:21.127097+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Manila"
+    },
+    {
+      "token_id": "highest-temperature-in-lucknow-on-april-23-2026",
+      "reason": "bloqueio de evento — Lucknow (intervenção manual detectada)",
+      "blocked_at": "2026-04-22T11:53:18.323991+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Lucknow"
+    },
+    {
+      "token_id": "highest-temperature-in-tokyo-on-april-23-2026",
+      "reason": "bloqueio de evento — Tokyo (intervenção manual detectada)",
+      "blocked_at": "2026-04-22T22:34:15.004484+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Tokyo"
+    },
+    {
+      "token_id": "highest-temperature-in-shanghai-on-april-24-2026",
+      "reason": "bloqueio de evento — Shanghai (intervenção manual detectada)",
+      "blocked_at": "2026-04-22T23:15:03.283968+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Shanghai"
+    },
+    {
+      "token_id": "highest-temperature-in-paris-on-april-24-2026",
+      "reason": "bloqueio de evento — Paris (intervenção manual detectada)",
+      "blocked_at": "2026-04-22T23:15:03.920049+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Paris"
+    },
+    {
+      "token_id": "highest-temperature-in-toronto-on-april-23-2026",
+      "reason": "bloqueio de evento — Toronto (intervenção manual detectada)",
+      "blocked_at": "2026-04-22T23:32:01.395335+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Toronto"
+    },
+    {
+      "token_id": "highest-temperature-in-london-on-april-23-2026",
+      "reason": "bloqueio de evento — London (intervenção manual detectada)",
+      "blocked_at": "2026-04-22T23:20:48.141420+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "London"
+    },
+    {
+      "token_id": "highest-temperature-in-milan-on-april-24-2026",
+      "reason": "bloqueio de evento — Milan (intervenção manual detectada)",
+      "blocked_at": "2026-04-22T23:20:49.053677+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Milan"
+    },
+    {
+      "token_id": "highest-temperature-in-seoul-on-april-23-2026",
+      "reason": "bloqueio de evento — Seoul (intervenção manual detectada)",
+      "blocked_at": "2026-04-22T23:20:49.544341+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Seoul"
+    },
+    {
+      "token_id": "highest-temperature-in-madrid-on-april-23-2026",
+      "reason": "bloqueio de evento — Madrid (intervenção manual detectada)",
+      "blocked_at": "2026-04-22T23:20:50.140746+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Madrid"
+    },
+    {
+      "token_id": "highest-temperature-in-ankara-on-april-24-2026",
+      "reason": "bloqueio de evento — Ankara (intervenção manual detectada)",
+      "blocked_at": "2026-04-22T23:32:00.846415+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Ankara"
+    },
+    {
+      "token_id": "highest-temperature-in-beijing-on-april-23-2026",
+      "reason": "bloqueio de evento — Beijing (intervenção manual detectada)",
+      "blocked_at": "2026-04-22T23:32:02.279151+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Beijing"
+    },
+    {
+      "token_id": "highest-temperature-in-moscow-on-april-24-2026",
+      "reason": "bloqueio de evento — Moscow (intervenção manual detectada)",
+      "blocked_at": "2026-04-23T02:07:44.739951+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Moscow"
+    },
+    {
+      "token_id": "highest-temperature-in-tokyo-on-april-24-2026",
+      "reason": "bloqueio de evento — Tokyo (intervenção manual detectada)",
+      "blocked_at": "2026-04-23T10:04:28.917747+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Tokyo"
+    },
+    {
+      "token_id": "highest-temperature-in-toronto-on-april-24-2026",
+      "reason": "bloqueio de evento — Toronto (intervenção manual detectada)",
+      "blocked_at": "2026-04-23T10:04:29.849644+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Toronto"
+    },
+    {
+      "token_id": "highest-temperature-in-singapore-on-april-24-2026",
+      "reason": "bloqueio de evento — Singapore (intervenção manual detectada)",
+      "blocked_at": "2026-04-23T10:04:30.538415+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Singapore"
+    },
+    {
+      "token_id": "highest-temperature-in-seoul-on-april-25-2026-21corhigher",
+      "reason": "cancelamento/venda manual — Seoul 21°C",
+      "blocked_at": "2026-04-23T10:28:02.397568+00:00",
+      "market_end_date": "2026-04-25T12:00:00Z",
+      "condition_id": null,
+      "market_question": "Will the highest temperature in Seoul be 21°C or higher on April 25?"
+    },
+    {
+      "token_id": "highest-temperature-in-seoul-on-april-25-2026",
+      "reason": "bloqueio de evento — Seoul (intervenção manual detectada)",
+      "blocked_at": "2026-04-23T10:28:02.444143+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Seoul"
+    },
+    {
+      "token_id": "highest-temperature-in-chengdu-on-april-24-2026",
+      "reason": "bloqueio de evento — Chengdu (intervenção manual detectada)",
+      "blocked_at": "2026-04-23T14:48:11.279317+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Chengdu"
+    },
+    {
+      "token_id": "highest-temperature-in-munich-on-april-24-2026",
+      "reason": "bloqueio de evento — Munich (intervenção manual detectada)",
+      "blocked_at": "2026-04-23T21:47:16.230736+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Munich"
+    },
+    {
+      "token_id": "highest-temperature-in-jakarta-on-april-25-2026-34c",
+      "reason": "cancelamento/venda manual — Jakarta 34°C",
+      "blocked_at": "2026-04-23T21:47:16.790555+00:00",
+      "market_end_date": "2026-04-25T12:00:00Z",
+      "condition_id": null,
+      "market_question": "Will the highest temperature in Jakarta be 34°C on April 25?"
+    },
+    {
+      "token_id": "highest-temperature-in-jakarta-on-april-25-2026",
+      "reason": "bloqueio de evento — Jakarta (intervenção manual detectada)",
+      "blocked_at": "2026-04-23T21:47:16.848412+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Jakarta"
+    },
+    {
+      "token_id": "highest-temperature-in-madrid-on-april-25-2026-22c",
+      "reason": "cancelamento/venda manual — Madrid 22°C",
+      "blocked_at": "2026-04-23T21:47:17.289281+00:00",
+      "market_end_date": "2026-04-25T12:00:00Z",
+      "condition_id": null,
+      "market_question": "Will the highest temperature in Madrid be 22°C on April 25?"
+    },
+    {
+      "token_id": "highest-temperature-in-madrid-on-april-25-2026",
+      "reason": "bloqueio de evento — Madrid (intervenção manual detectada)",
+      "blocked_at": "2026-04-23T21:47:17.341775+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Madrid"
+    },
+    {
+      "token_id": "highest-temperature-in-toronto-on-april-25-2026-8c",
+      "reason": "cancelamento/venda manual — Toronto 8°C",
+      "blocked_at": "2026-04-23T21:47:17.793432+00:00",
+      "market_end_date": "2026-04-25T12:00:00Z",
+      "condition_id": null,
+      "market_question": "Will the highest temperature in Toronto be 8°C on April 25?"
+    },
+    {
+      "token_id": "highest-temperature-in-toronto-on-april-25-2026",
+      "reason": "bloqueio de evento — Toronto (intervenção manual detectada)",
+      "blocked_at": "2026-04-23T21:47:17.847253+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Toronto"
+    },
+    {
+      "token_id": "highest-temperature-in-lucknow-on-april-25-2026-43c",
+      "reason": "cancelamento/venda manual — Lucknow 43°C",
+      "blocked_at": "2026-04-24T01:39:32.225570+00:00",
+      "market_end_date": "2026-04-25T12:00:00Z",
+      "condition_id": null,
+      "market_question": "Will the highest temperature in Lucknow be 43°C on April 25?"
+    },
+    {
+      "token_id": "highest-temperature-in-lucknow-on-april-25-2026",
+      "reason": "bloqueio de evento — Lucknow (intervenção manual detectada)",
+      "blocked_at": "2026-04-24T01:39:32.275363+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Lucknow"
+    },
+    {
+      "token_id": "highest-temperature-in-wellington-on-april-25-2026-16c",
+      "reason": "cancelamento/venda manual — Wellington 16°C",
+      "blocked_at": "2026-04-24T01:39:32.794171+00:00",
+      "market_end_date": "2026-04-25T12:00:00Z",
+      "condition_id": null,
+      "market_question": "Will the highest temperature in Wellington be 16°C on April 25?"
+    },
+    {
+      "token_id": "highest-temperature-in-wellington-on-april-25-2026",
+      "reason": "bloqueio de evento — Wellington (intervenção manual detectada)",
+      "blocked_at": "2026-04-24T01:39:32.850169+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Wellington"
+    },
+    {
+      "token_id": "highest-temperature-in-chengdu-on-april-26-2026-26corhigher",
+      "reason": "cancelamento/venda manual — Chengdu 26°C",
+      "blocked_at": "2026-04-24T11:55:35.744935+00:00",
+      "market_end_date": "2026-04-26T12:00:00Z",
+      "condition_id": null,
+      "market_question": "Will the highest temperature in Chengdu be 26°C or higher on April 26?"
+    },
+    {
+      "token_id": "highest-temperature-in-chengdu-on-april-26-2026",
+      "reason": "bloqueio de evento — Chengdu (intervenção manual detectada)",
+      "blocked_at": "2026-04-24T11:55:38.180806+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Chengdu"
+    },
+    {
+      "token_id": "highest-temperature-in-helsinki-on-april-25-2026-6c",
+      "reason": "cancelamento/venda manual — Helsinki 6°C",
+      "blocked_at": "2026-04-24T11:55:36.599586+00:00",
+      "market_end_date": "2026-04-25T12:00:00Z",
+      "condition_id": null,
+      "market_question": "Will the highest temperature in Helsinki be 6°C on April 25?"
+    },
+    {
+      "token_id": "highest-temperature-in-helsinki-on-april-25-2026",
+      "reason": "bloqueio de evento — Helsinki (intervenção manual detectada)",
+      "blocked_at": "2026-04-24T11:55:36.685573+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Helsinki"
+    },
+    {
+      "token_id": "highest-temperature-in-milan-on-april-26-2026-27c",
+      "reason": "cancelamento/venda manual — Milan 27°C",
+      "blocked_at": "2026-04-24T11:55:37.175885+00:00",
+      "market_end_date": "2026-04-26T12:00:00Z",
+      "condition_id": null,
+      "market_question": "Will the highest temperature in Milan be 27°C on April 26?"
+    },
+    {
+      "token_id": "highest-temperature-in-milan-on-april-26-2026",
+      "reason": "bloqueio de evento — Milan (intervenção manual detectada)",
+      "blocked_at": "2026-04-24T11:55:37.219568+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Milan"
+    },
+    {
+      "token_id": "highest-temperature-in-warsaw-on-april-25-2026-18c",
+      "reason": "cancelamento/venda manual — Warsaw 18°C",
+      "blocked_at": "2026-04-24T11:55:37.648208+00:00",
+      "market_end_date": "2026-04-25T12:00:00Z",
+      "condition_id": null,
+      "market_question": "Will the highest temperature in Warsaw be 18°C on April 25?"
+    },
+    {
+      "token_id": "highest-temperature-in-warsaw-on-april-25-2026",
+      "reason": "bloqueio de evento — Warsaw (intervenção manual detectada)",
+      "blocked_at": "2026-04-24T11:55:37.686914+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Warsaw"
+    },
+    {
+      "token_id": "highest-temperature-in-chengdu-on-april-26-2026-25c",
+      "reason": "cancelamento/venda manual — Chengdu 25°C",
+      "blocked_at": "2026-04-24T11:55:38.143572+00:00",
+      "market_end_date": "2026-04-26T12:00:00Z",
+      "condition_id": null,
+      "market_question": "Will the highest temperature in Chengdu be 25°C on April 26?"
+    },
+    {
+      "token_id": "highest-temperature-in-wuhan-on-april-25-2026-25c",
+      "reason": "cancelamento/venda manual — Wuhan 25°C",
+      "blocked_at": "2026-04-24T12:55:26.093606+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Wuhan 25°C"
+    },
+    {
+      "token_id": "highest-temperature-in-wuhan-on-april-25-2026",
+      "reason": "bloqueio de evento — Wuhan (intervenção manual detectada)",
+      "blocked_at": "2026-04-24T12:55:26.105875+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Wuhan"
+    },
+    {
+      "token_id": "highest-temperature-in-paris-on-april-25-2026-23c",
+      "reason": "cancelamento/venda manual — Paris 23°C",
+      "blocked_at": "2026-04-24T12:55:26.119387+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Paris 23°C"
+    },
+    {
+      "token_id": "highest-temperature-in-paris-on-april-25-2026",
+      "reason": "bloqueio de evento — Paris (intervenção manual detectada)",
+      "blocked_at": "2026-04-24T12:55:26.125983+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Paris"
+    },
+    {
+      "token_id": "highest-temperature-in-shanghai-on-april-25-2026-20c",
+      "reason": "cancelamento/venda manual — Shanghai 20°C",
+      "blocked_at": "2026-04-24T12:55:26.140227+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Shanghai 20°C"
+    },
+    {
+      "token_id": "highest-temperature-in-shanghai-on-april-25-2026",
+      "reason": "bloqueio de evento — Shanghai (intervenção manual detectada)",
+      "blocked_at": "2026-04-24T12:55:26.146474+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Shanghai"
+    },
+    {
+      "token_id": "highest-temperature-in-wuhan-on-april-26-2026-29c",
+      "reason": "cancelamento/venda manual — Wuhan 29°C",
+      "blocked_at": "2026-04-24T12:55:26.164247+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Wuhan 29°C"
+    },
+    {
+      "token_id": "highest-temperature-in-wuhan-on-april-26-2026",
+      "reason": "bloqueio de evento — Wuhan (intervenção manual detectada)",
+      "blocked_at": "2026-04-24T12:55:26.170594+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Wuhan"
+    },
+    {
+      "token_id": "highest-temperature-in-wellington-on-april-26-2026-18c",
+      "reason": "cancelamento/venda manual — Wellington 18°C",
+      "blocked_at": "2026-04-24T12:55:26.184873+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Wellington 18°C"
+    },
+    {
+      "token_id": "highest-temperature-in-wellington-on-april-26-2026",
+      "reason": "bloqueio de evento — Wellington (intervenção manual detectada)",
+      "blocked_at": "2026-04-24T12:55:26.191204+00:00",
+      "market_end_date": null,
+      "condition_id": null,
+      "market_question": "Wellington"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+# Dashboard Polymarket — dependências do servidor Render
+# Instale localmente com: pip install -r requirements_dashboard.txt
+
+fastapi==0.111.0
+uvicorn[standard]==0.29.0
+python-dotenv==1.0.1
+requests==2.32.3
+py-clob-client==0.18.0
