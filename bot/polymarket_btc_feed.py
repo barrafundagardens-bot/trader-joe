@@ -11,7 +11,7 @@ from __future__ import annotations
 import json
 import logging
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from typing import Optional
 
 import requests
@@ -98,12 +98,19 @@ class PolymarketBTCFeed:
         return best
 
     def _fetch_candidates(self) -> list[dict]:
+        # end_date_min descarta mercados "zumbi" (active=true mas endDate
+        # já passou) que a API teima em listar. Sem isso, os primeiros
+        # 100 resultados são todos do passado e nunca chegamos nos atuais.
+        cutoff = (
+            datetime.now(timezone.utc) - timedelta(minutes=5)
+        ).strftime("%Y-%m-%dT%H:%M:%SZ")
         try:
             resp = self._session.get(
                 f"{GAMMA_API}/markets",
                 params={
                     "active": "true",
                     "closed": "false",
+                    "end_date_min": cutoff,
                     "order": "endDate",
                     "ascending": "true",
                     "limit": self.search_limit,
