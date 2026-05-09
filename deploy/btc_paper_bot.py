@@ -38,8 +38,8 @@ from bot.polymarket_btc_feed import BTCMarket, PolymarketBTCFeed
 from bot.risk_manager import RiskManager
 from strategies.base_strategy import Signal, SignalType
 from strategies.btc_spike_strategy import BTCSpikeStrategy
+from strategies.btc_rsi_momentum_strategy import BTCRSIMomentumStrategy
 from strategies.macd_strategy import MACDStrategy
-from strategies.rsi_strategy import RSIStrategy
 
 load_dotenv()
 
@@ -113,9 +113,12 @@ class BTCPaperBot:
         )
 
         self.strategies = [
-            MACDStrategy(),
-            RSIStrategy(),
-            BTCSpikeStrategy(),
+            # min_histogram em $ reais para BTC (era 0.00005, calibrado pra Polymarket 0-1)
+            MACDStrategy(params={"min_histogram": 5.0, "ema_tolerance": 0.005}),
+            # RSI de momentum: detecta cruzamento do nível 50, sem slope em unidade absoluta
+            BTCRSIMomentumStrategy(params={"pivot": 50.0, "min_magnitude": 3.0}),
+            # Spike: volume_factor levemente relaxado (1.5→1.2) para BTC em lateral
+            BTCSpikeStrategy(params={"volume_factor": 1.2, "zscore_threshold": 1.8}),
         ]
 
         self.open_positions: List[PaperPosition] = []
